@@ -3,7 +3,7 @@ from flask import Flask , render_template, request, url_for, redirect, session, 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-# configuration
+# Configuration
 
 app = Flask(__name__)
 #app.config['SECRET_KEY'] = os.urandom(24)
@@ -14,13 +14,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# url to download files
+# Url to download files
 
 @app.route('/datasets/<path:filename>', methods=["GET"])
 def getFile(filename):
     return send_from_directory(app.config['DATASET_FOLDER'], filename)
 
-# defining table for SQLAlchemy
+# Defining table for SQLAlchemy
 
 class FileContents(db.Model):
     id = db.Column(db.String(300),primary_key=True)
